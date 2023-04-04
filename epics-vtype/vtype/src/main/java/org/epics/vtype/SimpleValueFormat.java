@@ -6,6 +6,7 @@ package org.epics.vtype;
 
 import java.text.FieldPosition;
 import java.text.NumberFormat;
+import java.text.Format;
 import java.util.List;
 import org.epics.util.array.ListBoolean;
 import org.epics.util.array.ListByte;
@@ -41,7 +42,7 @@ public class SimpleValueFormat extends ValueFormat {
         }
 
         if (scalar instanceof DisplayProvider && nf(scalar) != null) {
-            NumberFormat f = ((DisplayProvider)scalar).getDisplay().getFormat();
+            Format f = ((DisplayProvider)scalar).getDisplay().getFormat();
             return f.format(scalar.getValue(), toAppendTo, pos);
         }
 
@@ -56,7 +57,7 @@ public class SimpleValueFormat extends ValueFormat {
      * @param obj data object
      * @return number format
      */
-    private NumberFormat nf(Object obj) {
+    private Format nf(Object obj) {
         if (getNumberFormat() != null)
             return getNumberFormat();
 
@@ -77,7 +78,7 @@ public class SimpleValueFormat extends ValueFormat {
      * @return  the string buffer
      */
     protected StringBuffer format(VNumberArray array, StringBuffer toAppendTo, FieldPosition pos) {
-        NumberFormat f = nf(array);
+        Format f = nf(array);
 
         toAppendTo.append("[");
         boolean hasMore = false;

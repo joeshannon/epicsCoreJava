@@ -4,6 +4,7 @@
  */
 package org.epics.vtype;
 
+import java.text.Format;
 import java.text.NumberFormat;
 import org.epics.util.stats.Range;
 
@@ -19,7 +20,7 @@ final class IDisplay extends Display {
     private final Range warningRange;
     private final Range controlRange;
     private final String unit;
-    private final NumberFormat format;
+    private final Format format;
     private final String description;
 
     public IDisplay(Range displayRange, Range alarmRange, Range warningRange,
@@ -40,7 +41,7 @@ final class IDisplay extends Display {
     }
 
     public IDisplay(Range displayRange, Range alarmRange, Range warningRange,
-                    Range controlRange, String unit, NumberFormat format, String description) {
+                    Range controlRange, String unit, Format format, String description) {
         VType.argumentNotNull("displayRange", displayRange);
         VType.argumentNotNull("warningRange", warningRange);
         VType.argumentNotNull("alarmRange", alarmRange);
@@ -82,7 +83,7 @@ final class IDisplay extends Display {
     }
 
     @Override
-    public NumberFormat getFormat() {
+    public Format getFormat() {
         return format;
     }
 

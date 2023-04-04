@@ -6,6 +6,7 @@ package org.epics.vtype;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.Format;
 import java.util.Objects;
 import org.epics.util.stats.Range;
 
@@ -63,7 +64,7 @@ public abstract class Display {
      *
      * @return the default format for all values
      */
-    public abstract NumberFormat getFormat();
+    public abstract Format getFormat();
 
     /**
      * Human-readable description of the underlying data, e.g. the DESC field of an EPICS record.
@@ -155,7 +156,7 @@ public abstract class Display {
      * @return a new display
      */
     public static Display of(final Range displayRange, final Range alarmRange, final Range warningRange,
-            final Range controlRange, final String units, final NumberFormat numberFormat) {
+            final Range controlRange, final String units, final Format numberFormat) {
         return of(displayRange, alarmRange, warningRange,
                 controlRange, units, numberFormat, null);
     }
@@ -173,7 +174,7 @@ public abstract class Display {
      * @return a new display
      */
     public static Display of(final Range displayRange, final Range alarmRange, final Range warningRange,
-                             final Range controlRange, final String units, final NumberFormat numberFormat, String description) {
+                             final Range controlRange, final String units, final Format numberFormat, String description) {
         return new IDisplay(displayRange, alarmRange, warningRange,
                 controlRange, units, numberFormat, description);
     }
